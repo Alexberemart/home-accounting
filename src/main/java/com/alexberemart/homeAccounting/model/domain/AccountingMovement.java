@@ -1,12 +1,13 @@
 package com.alexberemart.homeAccounting.model.domain;
 
+import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by Alex on 12/11/2016.
- */
+@Entity
 public class AccountingMovement {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     protected String id;
     protected Date date;
     protected String description;
