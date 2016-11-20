@@ -2,13 +2,14 @@ package com.alexberemart.homeAccounting.factories;
 
 import com.alexberemart.homeAccounting.model.domain.AccountingMovement;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 
-@Service
 public class IngFactory extends AccountingMovementFactory{
 
+    @Value("${headers.ing}")
     private String[] headers;
 
     public AccountingMovement getAccountingMovementsFromCSVRecord(CSVRecord record) throws ParseException {

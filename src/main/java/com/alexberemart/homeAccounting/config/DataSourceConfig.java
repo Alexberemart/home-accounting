@@ -35,7 +35,7 @@ public class DataSourceConfig {
     @Bean(name = "sessionFactory")
     public LocalSessionFactoryBean getSessionFactory(
             BasicDataSource dataSource,
-            @Value("${hibernate.dialect}") String dialect) {
+            @Value("${core.hibernate.dialect.classname}") String dialect) {
         LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
         localSessionFactoryBean.setDataSource(dataSource);
         localSessionFactoryBean.getHibernateProperties().setProperty("hibernate.hbm2ddl.auto", "update");

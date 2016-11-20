@@ -1,5 +1,6 @@
 package com.alexberemart.homeAccounting;
 
+import com.alexberemart.homeAccounting.factories.BbvaFactory;
 import com.alexberemart.homeAccounting.services.AccountingMovementServices;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,9 @@ public class AccountingMovementTest {
 
     @Autowired
     AccountingMovementServices bbvaAccountingMovementServices;
+
+    @Autowired
+    BbvaFactory bbvaFactory;
 
     @Test
     public void getAccountingMovements() throws IOException, ParseException {

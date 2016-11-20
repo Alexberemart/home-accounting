@@ -8,16 +8,16 @@ public class AccountingMovement {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    protected String id;
+    protected Long id;
     protected Date date;
     protected String description;
     protected Float amount;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
