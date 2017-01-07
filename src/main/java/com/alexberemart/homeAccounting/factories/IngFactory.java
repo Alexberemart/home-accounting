@@ -16,7 +16,7 @@ public class IngFactory extends AccountingMovementFactory{
         AccountingMovement accountingMovement = new AccountingMovement();
         accountingMovement.setDate(getDateFromString(record.get(headers[0])));
         accountingMovement.setDescription(record.get(headers[3]));
-        accountingMovement.setAmount(getFloatFromString(record.get(headers[8])));
+        accountingMovement.setAmount(getFloatFromString(record.get(headers[6])));
         return accountingMovement;
     }
 

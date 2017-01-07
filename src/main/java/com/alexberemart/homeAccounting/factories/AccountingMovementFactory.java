@@ -19,7 +19,7 @@ public abstract class AccountingMovementFactory {
     public Float getFloatFromString(String text) throws ParseException {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator(',');
-        DecimalFormat format = new DecimalFormat("0.#");
+        DecimalFormat format = new DecimalFormat();
         format.setDecimalFormatSymbols(symbols);
         return format.parse(text).floatValue();
     }

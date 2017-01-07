@@ -2,9 +2,13 @@ package com.alexberemart.homeAccounting.services;
 
 import com.alexberemart.homeAccounting.factories.AccountingMovementFactory;
 import com.alexberemart.homeAccounting.factories.CsvFactory;
+import com.alexberemart.homeAccounting.model.dao.PersonRepository;
 import com.alexberemart.homeAccounting.model.domain.AccountingMovement;
-import org.apache.commons.csv.CSVFormat;
+import com.alexberemart.homeAccounting.model.domain.AccountingMovementGroupByDate;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.*;
 import java.text.ParseException;
@@ -16,6 +20,9 @@ public class AccountingMovementServices {
     private AccountingMovementFactory accountingMovementFactory;
     private CsvFactory csvFactory;
 
+    @Autowired
+    PersonRepository personRepository;
+
     public List<AccountingMovement> getAccountingMovements(InputStream is) throws IOException, ParseException {
 
         List<AccountingMovement> result = new ArrayList<AccountingMovement>();
@@ -26,6 +33,39 @@ public class AccountingMovementServices {
             result.add(accountingMovementFactory.getAccountingMovementsFromCSVRecord(record));
         }
 
+        return result;
+    }
+
+    public void save(List<AccountingMovement> accountingMovements) {
+        for (AccountingMovement accountingMovement : accountingMovements) {
+            personRepository.save(accountingMovement);
+        }
+    }
+
+    public List<AccountingMovement> findAll() {
+        return (List<AccountingMovement>) personRepository.findAll();
+    }
+
+    public List<AccountingMovement> findAllByOrderByDate() {
+        return personRepository.findAllByOrderByDate();
+    }
+
+    public List<AccountingMovementGroupByDate> getAmountGroupByDate() throws JsonProcessingException {
+        return personRepository.getAmountGroupByDate();
+    }
+
+    public List<AccountingMovementGroupByDate> getAmountAccumulatedByDate() {
+        List<AccountingMovementGroupByDate> result = new ArrayList<AccountingMovementGroupByDate>();
+        Double accumulatedAmount = 0.0D;
+        List<AccountingMovementGroupByDate> accountingMovementGroupByDateList = personRepository.getAmountGroupByDate();
+        for (AccountingMovementGroupByDate accountingMovementGroupByDate : accountingMovementGroupByDateList){
+            accumulatedAmount += accountingMovementGroupByDate.getAmount();
+
+            AccountingMovementGroupByDate accountingMovementGroupByDate1 = new AccountingMovementGroupByDate();
+            accountingMovementGroupByDate1.setDate(accountingMovementGroupByDate.getDate());
+            accountingMovementGroupByDate1.setAmount(accumulatedAmount);
+            result.add(accountingMovementGroupByDate1);
+        }
         return result;
     }
 

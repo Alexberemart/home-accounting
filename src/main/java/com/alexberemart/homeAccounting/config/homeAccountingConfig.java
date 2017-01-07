@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +24,16 @@ public class HomeAccountingConfig {
 
     @Bean()
     public PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-        PropertyPlaceholderConfigurer propertyPlaceholderConfigurer = new PropertyPlaceholderConfigurer();
-        propertyPlaceholderConfigurer.setIgnoreUnresolvablePlaceholders(true);
-        propertyPlaceholderConfigurer.setOrder(0);
+        AlexberemartPropertyPlaceholderConfigurer alexberemartPropertyPlaceholderConfigurer = new AlexberemartPropertyPlaceholderConfigurer();
+        alexberemartPropertyPlaceholderConfigurer.setIgnoreUnresolvablePlaceholders(true);
+        alexberemartPropertyPlaceholderConfigurer.setOrder(0);
 
         List<Resource> resourceList = new ArrayList<Resource>();
         resourceList.add(new ClassPathResource("com/alexberemart/homeAccounting/context.properties"));
         resourceList.add(new ClassPathResource("data/jdbc-dev.properties"));
 
-        propertyPlaceholderConfigurer.setLocations(resourceList.toArray(new Resource[]{}));
-        return propertyPlaceholderConfigurer;
+        alexberemartPropertyPlaceholderConfigurer.setLocations(resourceList.toArray(new Resource[]{}));
+        return alexberemartPropertyPlaceholderConfigurer;
     }
 
     @Bean("ingFactory")

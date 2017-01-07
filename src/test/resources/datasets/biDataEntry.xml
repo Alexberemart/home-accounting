@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <accountingmovement id="1" date="2016-12-22 23:00:00" description="description" amount="-11700.0"/>
+    <accountingmovement id="2" date="2016-12-23 23:00:00" description="description" amount="-11700.0"/>
+    <accountingmovement id="3" date="2016-12-24 23:00:00" description="description" amount="-11700.0"/>
+    <accountingmovement id="4" date="2016-12-25 23:00:00" description="description" amount="-11700.0"/>
+    <accountingmovement id="5" date="2016-12-25 23:00:00" description="description" amount="-11700.0"/>
+</dataset>
