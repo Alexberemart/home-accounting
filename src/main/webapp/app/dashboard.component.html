@@ -1,0 +1,16 @@
+<input type="file" (change)="loadFile($event)"/>
+
+<!--<div *ngFor="let hero of accountingMovements" class="col-1-4">-->
+<!--<div class="module hero">-->
+<!--<h4>{{hero.description}}</h4>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="row">
+    <div class="col-md-6">
+        <chart-movements [accountingMovements]="accountingMovements"></chart-movements>
+    </div>
+    <div class="col-md-6">
+        <chart-recap [accountingMovementGroupByDate]="accountingMovementGroupByDate"></chart-recap>
+    </div>
+</div>
