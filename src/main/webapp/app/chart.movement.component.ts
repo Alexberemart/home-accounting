@@ -12,24 +12,6 @@ export class ChartMovementsComponent extends ChartComponent implements OnChanges
 
     public lineChartData: Array<any> = [{data: [], label: 'Movements'}];
     public lineChartLabels: Array<any> = [];
-    public lineChartOptions: any = {
-        responsive: true,
-        scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        callback: function(label, index, labels) {
-                            return label/1000+'k';
-                        }
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: '1k = 1000'
-                    }
-                }
-            ]
-        }
-    };
     public lineChartColors: Array<any> = [
         { // grey
             backgroundColor: 'rgba(148,159,177,0.2)',

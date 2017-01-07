@@ -21,24 +21,6 @@ var ChartMovementsComponent = (function (_super) {
         _super.apply(this, arguments);
         this.lineChartData = [{ data: [], label: 'Movements' }];
         this.lineChartLabels = [];
-        this.lineChartOptions = {
-            responsive: true,
-            scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            callback: function (label, index, labels) {
-                                return label / 1000 + 'k';
-                            }
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: '1k = 1000'
-                        }
-                    }
-                ]
-            }
-        };
         this.lineChartColors = [
             {
                 backgroundColor: 'rgba(148,159,177,0.2)',

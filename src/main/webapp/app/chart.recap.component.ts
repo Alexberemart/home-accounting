@@ -13,9 +13,6 @@ export class ChartRecapComponent extends ChartComponent implements OnChanges {
 
     public lineChartData: Array<any> = [{data: [], label: 'Movements'}];
     public lineChartLabels: Array<any> = [];
-    public lineChartOptions: any = {
-        responsive: true
-    };
     public lineChartColors: Array<any> = [
         { // grey
             backgroundColor: 'rgba(148,159,177,0.2)',

@@ -21,9 +21,6 @@ var ChartRecapComponent = (function (_super) {
         _super.apply(this, arguments);
         this.lineChartData = [{ data: [], label: 'Movements' }];
         this.lineChartLabels = [];
-        this.lineChartOptions = {
-            responsive: true
-        };
         this.lineChartColors = [
             {
                 backgroundColor: 'rgba(148,159,177,0.2)',
