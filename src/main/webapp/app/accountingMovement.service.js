@@ -19,7 +19,7 @@ var AccountingMovementService = (function () {
     AccountingMovementService.prototype.save = function (name) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post("/api/accountingMovement", name, options)
+        return this.http.post("/api/accountingMovement/1", name, options)
             .map(this.extractData)
             .catch(this.handleError);
     };
@@ -37,9 +37,29 @@ var AccountingMovementService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
+    AccountingMovementService.prototype.getAmountGroupByMonth = function () {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.get("/api/accountingMovement/getAmountAccumulatedByDate", options)
+            .map(this.extractData2)
+            .catch(this.handleError);
+    };
     AccountingMovementService.prototype.extractData = function (res) {
         var body = res.json();
         return body || [];
+    };
+    AccountingMovementService.prototype.extractData2 = function (res) {
+        var body = res.json();
+        var groups = {};
+        body.forEach(function (element) {
+            var d = new Date(element.date);
+            var group = d.getMonth();
+            groups[group] = groups[group] || [];
+            groups[group].push(element);
+        });
+        return Object.keys(groups).map(function (group) {
+            return groups[group];
+        });
     };
     AccountingMovementService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure

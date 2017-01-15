@@ -15,6 +15,7 @@ var DashboardComponent = (function () {
         this.accountingMovementService = accountingMovementService;
         this.accountingMovements = [];
         this.accountingMovementGroupByDate = [];
+        this.accountingMovementGroupByMonth = [];
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -22,6 +23,8 @@ var DashboardComponent = (function () {
             .subscribe(function (accountingMovements) { return _this.accountingMovements = accountingMovements; }, function (error) { return _this.errorMessage = error; });
         this.accountingMovementService.getAmountGroupByDate()
             .subscribe(function (accountingMovementGroupByDate) { return _this.accountingMovementGroupByDate = accountingMovementGroupByDate; }, function (error) { return _this.errorMessage = error; });
+        this.accountingMovementService.getAmountGroupByMonth()
+            .subscribe(function (accountingMovementGroupByMonth) { return _this.accountingMovementGroupByMonth = accountingMovementGroupByMonth; }, function (error) { return _this.errorMessage = error; });
     };
     DashboardComponent.prototype.saveFile = function (name) {
         var _this = this;

@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {AccountingMovementService} from "./accountingMovement.service";
 import {AccountingMovement} from "./accountingMovement";
 import {AccountingMovementGroupByDate} from "./accountingMovementGroupByDate";
+import {AccountingMovementGroupByMonth} from "./accountingMovementGroupByMonth";
 
 @Component({
     selector: 'my-dashboard',
@@ -11,6 +12,7 @@ export class DashboardComponent implements OnInit{
 
     accountingMovements : AccountingMovement[] = [];
     accountingMovementGroupByDate : AccountingMovementGroupByDate[] = [];
+    accountingMovementGroupByMonth : AccountingMovementGroupByMonth[] = [];
     errorMessage : any;
 
     ngOnInit(): void {
@@ -21,6 +23,10 @@ export class DashboardComponent implements OnInit{
         this.accountingMovementService.getAmountGroupByDate()
             .subscribe(
                 accountingMovementGroupByDate => this.accountingMovementGroupByDate = accountingMovementGroupByDate,
+                error => this.errorMessage = <any>error);
+        this.accountingMovementService.getAmountGroupByMonth()
+            .subscribe(
+                accountingMovementGroupByMonth => this.accountingMovementGroupByMonth = accountingMovementGroupByMonth,
                 error => this.errorMessage = <any>error);
     }
 

@@ -10,6 +10,7 @@ import { routing } from './app.routing';
 import { ChartsModule } from 'ng2-charts';
 import {ChartMovementsComponent} from "./chart.movement.component";
 import {ChartRecapComponent} from "./chart.recap.component";
+import {ChartMonthRecapComponent} from "./chart.month.recap.component";
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import {ChartRecapComponent} from "./chart.recap.component";
         AppComponent,
         DashboardComponent,
         ChartMovementsComponent,
-        ChartRecapComponent
+        ChartRecapComponent,
+        ChartMonthRecapComponent
     ],
     bootstrap:    [
         AppComponent

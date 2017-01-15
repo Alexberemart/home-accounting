@@ -7,10 +7,13 @@
 <!--</div>-->
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <chart-movements [accountingMovements]="accountingMovements"></chart-movements>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <chart-recap [accountingMovementGroupByDate]="accountingMovementGroupByDate"></chart-recap>
+    </div>
+    <div class="col-md-4">
+        <chart-month-recap [accountingMovementGroupByMonth]="accountingMovementGroupByMonth"></chart-month-recap>
     </div>
 </div>

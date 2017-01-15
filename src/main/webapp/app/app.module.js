@@ -19,6 +19,7 @@ var app_routing_1 = require('./app.routing');
 var ng2_charts_1 = require('ng2-charts');
 var chart_movement_component_1 = require("./chart.movement.component");
 var chart_recap_component_1 = require("./chart.recap.component");
+var chart_month_recap_component_1 = require("./chart.month.recap.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -35,7 +36,8 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 dashboard_component_1.DashboardComponent,
                 chart_movement_component_1.ChartMovementsComponent,
-                chart_recap_component_1.ChartRecapComponent
+                chart_recap_component_1.ChartRecapComponent,
+                chart_month_recap_component_1.ChartMonthRecapComponent
             ],
             bootstrap: [
                 app_component_1.AppComponent

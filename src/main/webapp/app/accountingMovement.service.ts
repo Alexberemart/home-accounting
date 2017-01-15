@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {AccountingMovement} from "./accountingMovement";
 import {AccountingMovementGroupByDate} from "./accountingMovementGroupByDate";
+import {AccountingMovementGroupByMonth} from "./accountingMovementGroupByMonth";
 
 @Injectable()
 export class AccountingMovementService {
@@ -16,7 +17,7 @@ export class AccountingMovementService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this.http.post("/api/accountingMovement", name, options)
+        return this.http.post("/api/accountingMovement/1", name, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -39,9 +40,33 @@ export class AccountingMovementService {
             .catch(this.handleError);
     }
 
+    getAmountGroupByMonth(): Observable<AccountingMovementGroupByMonth[]> {
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        return this.http.get("/api/accountingMovement/getAmountAccumulatedByDate", options)
+            .map(this.extractData2)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || [];
+    }
+
+    private extractData2(res: Response) {
+        let body = res.json();
+        var groups = {};
+        body.forEach(function(element){
+            var d = new Date(element.date);
+            var group = d.getMonth();
+            groups[group] = groups[group] || [];
+            groups[group].push(element);
+        });
+        return Object.keys(groups).map( function( group )
+        {
+            return groups[group];
+        })
     }
 
     private handleError(error: Response | any) {
