@@ -13,6 +13,18 @@ public class AccountingMovement {
     protected String description;
     protected Float amount;
 
+    @ManyToOne
+    @JoinColumn(name="bank_account_id")
+    protected BankAccount bankAccount;
+
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
     public Long getId() {
         return id;
     }

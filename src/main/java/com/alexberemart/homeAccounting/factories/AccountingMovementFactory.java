@@ -1,6 +1,7 @@
 package com.alexberemart.homeAccounting.factories;
 
 import com.alexberemart.homeAccounting.model.domain.AccountingMovement;
+import com.alexberemart.homeAccounting.model.domain.BankAccount;
 import org.apache.commons.csv.CSVRecord;
 
 import java.text.DecimalFormat;
@@ -24,6 +25,6 @@ public abstract class AccountingMovementFactory {
         return format.parse(text).floatValue();
     }
 
-    public abstract AccountingMovement getAccountingMovementsFromCSVRecord(CSVRecord record) throws ParseException;
+    public abstract AccountingMovement getAccountingMovementsFromCSVRecord(CSVRecord record, BankAccount bankAccount) throws ParseException;
     public abstract void setHeaders(String[] headers);
 }

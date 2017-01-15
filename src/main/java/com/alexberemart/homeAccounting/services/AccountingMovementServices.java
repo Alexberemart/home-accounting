@@ -5,6 +5,7 @@ import com.alexberemart.homeAccounting.factories.CsvFactory;
 import com.alexberemart.homeAccounting.model.dao.PersonRepository;
 import com.alexberemart.homeAccounting.model.domain.AccountingMovement;
 import com.alexberemart.homeAccounting.model.domain.AccountingMovementGroupByDate;
+import com.alexberemart.homeAccounting.model.domain.BankAccount;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.csv.CSVRecord;
@@ -14,6 +15,7 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AccountingMovementServices {
 
@@ -23,14 +25,19 @@ public class AccountingMovementServices {
     @Autowired
     PersonRepository personRepository;
 
-    public List<AccountingMovement> getAccountingMovements(InputStream is) throws IOException, ParseException {
+    @Autowired
+    BankAccountServices bankAccountServices;
+
+    public List<AccountingMovement> getAccountingMovements(InputStream is, Long bankAccountId) throws IOException, ParseException {
 
         List<AccountingMovement> result = new ArrayList<AccountingMovement>();
+
+        BankAccount bankAccount = bankAccountServices.findById(bankAccountId);
 
         Reader in = new InputStreamReader(is);
         Iterable<CSVRecord> records = csvFactory.readCvs(in);
         for (CSVRecord record : records) {
-            result.add(accountingMovementFactory.getAccountingMovementsFromCSVRecord(record));
+            result.add(accountingMovementFactory.getAccountingMovementsFromCSVRecord(record, bankAccount));
         }
 
         return result;

@@ -33,7 +33,7 @@ public class PersonRepositoryTest {
     @Test
     public void getAccountingMovements2() throws IOException, ParseException {
         InputStream is = getClass().getResourceAsStream("/com/alexberemart/homeAccounting/bbva.csv");
-        List<AccountingMovement> accountingMovements = bbvaAccountingMovementServices.getAccountingMovements(is);
+        List<AccountingMovement> accountingMovements = bbvaAccountingMovementServices.getAccountingMovements(is, 1L);
         personRepository.save(accountingMovements.get(0));
     }
 }

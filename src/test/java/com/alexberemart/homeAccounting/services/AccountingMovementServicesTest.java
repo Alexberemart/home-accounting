@@ -48,14 +48,14 @@ public class AccountingMovementServicesTest {
     @Test
     public void getAccountingMovements() throws IOException, ParseException {
         InputStream is = getClass().getResourceAsStream("/com/alexberemart/homeAccounting/ing.csv");
-        List<AccountingMovement> accountingMovements = ingAccountingMovementServices.getAccountingMovements(is);
+        List<AccountingMovement> accountingMovements = ingAccountingMovementServices.getAccountingMovements(is, 1L);
         Assert.assertNotNull(accountingMovements);
     }
 
     @Test
     public void getBBVAAccountingMovements() throws IOException, ParseException {
         InputStream is = getClass().getResourceAsStream("/com/alexberemart/homeAccounting/bbva.csv");
-        bbvaAccountingMovementServices.getAccountingMovements(is);
+        bbvaAccountingMovementServices.getAccountingMovements(is, 1L);
     }
 
     @Test

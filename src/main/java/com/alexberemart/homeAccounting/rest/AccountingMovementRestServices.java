@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -30,10 +27,10 @@ public class AccountingMovementRestServices {
     @Autowired
     AccountingMovementServices bbvaAccountingMovementServices;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public HttpEntity<List<AccountingMovement>> save(@RequestBody String input) throws IOException, ParseException {
+    @RequestMapping(path = "/{bankAccountId}", method = RequestMethod.POST)
+    public HttpEntity<List<AccountingMovement>> save(@PathVariable("bankAccountId") Long bankAccountId, @RequestBody String input) throws IOException, ParseException {
         InputStream is = new ByteArrayInputStream(input.getBytes());
-        List<AccountingMovement> result = ingAccountingMovementServices.getAccountingMovements(is);
+        List<AccountingMovement> result = ingAccountingMovementServices.getAccountingMovements(is, bankAccountId);
         ingAccountingMovementServices.save(result);
         return new ResponseEntity<List<AccountingMovement>>(result, HttpStatus.OK);
     }
