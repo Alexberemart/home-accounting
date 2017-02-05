@@ -1,0 +1,3 @@
+<select [ngModel]="selectedBankAccount" (ngModelChange)="onClick($event)">
+    <option [ngValue]="i" *ngFor="let i of bankAccounts">{{i.description}}</option>
+</select>

@@ -16,10 +16,10 @@ var AccountingMovementService = (function () {
     function AccountingMovementService(http) {
         this.http = http;
     }
-    AccountingMovementService.prototype.save = function (name) {
+    AccountingMovementService.prototype.save = function (name, selectedBankAccount) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post("/api/accountingMovement/1", name, options)
+        return this.http.post("/api/accountingMovement/" + selectedBankAccount.id, name, options)
             .map(this.extractData)
             .catch(this.handleError);
     };

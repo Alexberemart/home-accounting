@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import {AccountingMovement} from "./accountingMovement";
 import {AccountingMovementGroupByDate} from "./accountingMovementGroupByDate";
 import {AccountingMovementGroupByMonth} from "./accountingMovementGroupByMonth";
+import {BankAccount} from "./bankAccount";
 
 @Injectable()
 export class AccountingMovementService {
@@ -13,11 +14,11 @@ export class AccountingMovementService {
     constructor(private http: Http) {
     }
 
-    save(name: string): Observable<AccountingMovement[]> {
+    save(name: string, selectedBankAccount : BankAccount): Observable<AccountingMovement[]> {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this.http.post("/api/accountingMovement/1", name, options)
+        return this.http.post("/api/accountingMovement/" + selectedBankAccount.id, name, options)
             .map(this.extractData)
             .catch(this.handleError);
     }

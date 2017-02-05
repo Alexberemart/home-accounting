@@ -1,10 +1,6 @@
-<input type="file" (change)="loadFile($event)"/>
+<input type="file" (change)="loadFile($event, selectedBankAccount)"/>
 
-<!--<div *ngFor="let hero of accountingMovements" class="col-1-4">-->
-<!--<div class="module hero">-->
-<!--<h4>{{hero.description}}</h4>-->
-<!--</div>-->
-<!--</div>-->
+<bank-account-selector (notify)="onNotifyBankAccountSelect($event)"></bank-account-selector>
 
 <div class="row">
     <div class="col-md-4">

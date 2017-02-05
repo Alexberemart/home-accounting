@@ -26,22 +26,25 @@ var DashboardComponent = (function () {
         this.accountingMovementService.getAmountGroupByMonth()
             .subscribe(function (accountingMovementGroupByMonth) { return _this.accountingMovementGroupByMonth = accountingMovementGroupByMonth; }, function (error) { return _this.errorMessage = error; });
     };
-    DashboardComponent.prototype.saveFile = function (name) {
+    DashboardComponent.prototype.saveFile = function (name, selectedBankAccount) {
         var _this = this;
         if (!name) {
             return;
         }
-        this.accountingMovementService.save(name)
+        this.accountingMovementService.save(name, selectedBankAccount)
             .subscribe(function (accountingMovements) { return _this.accountingMovements = accountingMovements; }, function (error) { return _this.errorMessage = error; });
     };
-    DashboardComponent.prototype.loadFile = function (event) {
+    DashboardComponent.prototype.loadFile = function (event, selectedBankAccount) {
         var self = this;
         var files = event.srcElement.files;
         var myReader = new FileReader();
         myReader.onloadend = function (e) {
-            self.saveFile(myReader.result);
+            self.saveFile(myReader.result, selectedBankAccount);
         };
         myReader.readAsText(files[0]);
+    };
+    DashboardComponent.prototype.onNotifyBankAccountSelect = function (selectBankAccount) {
+        this.selectedBankAccount = selectBankAccount;
     };
     DashboardComponent = __decorate([
         core_1.Component({

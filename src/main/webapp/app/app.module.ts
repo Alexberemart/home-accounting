@@ -11,6 +11,8 @@ import { ChartsModule } from 'ng2-charts';
 import {ChartMovementsComponent} from "./chart.movement.component";
 import {ChartRecapComponent} from "./chart.recap.component";
 import {ChartMonthRecapComponent} from "./chart.month.recap.component";
+import {BankAccountSelectComponent} from "./bank.account.select.component";
+import {BankAccountService} from "./bank.account.service";
 
 @NgModule({
     imports: [
@@ -25,13 +27,15 @@ import {ChartMonthRecapComponent} from "./chart.month.recap.component";
         DashboardComponent,
         ChartMovementsComponent,
         ChartRecapComponent,
-        ChartMonthRecapComponent
+        ChartMonthRecapComponent,
+        BankAccountSelectComponent
     ],
     bootstrap:    [
         AppComponent
     ],
     providers: [
-        AccountingMovementService
+        AccountingMovementService,
+        BankAccountService
     ]
 })
 export class AppModule { }

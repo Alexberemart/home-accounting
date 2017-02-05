@@ -5,6 +5,8 @@ import com.alexberemart.homeAccounting.model.domain.BankAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BankAccountServices {
 
@@ -13,5 +15,9 @@ public class BankAccountServices {
 
     public BankAccount findById(Long id) {
         return bankAccountRepository.findById(id);
+    }
+
+    public List<BankAccount> findAll(){
+        return (List<BankAccount>) bankAccountRepository.findAll();
     }
 }

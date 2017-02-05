@@ -20,6 +20,8 @@ var ng2_charts_1 = require('ng2-charts');
 var chart_movement_component_1 = require("./chart.movement.component");
 var chart_recap_component_1 = require("./chart.recap.component");
 var chart_month_recap_component_1 = require("./chart.month.recap.component");
+var bank_account_select_component_1 = require("./bank.account.select.component");
+var bank_account_service_1 = require("./bank.account.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,13 +39,15 @@ var AppModule = (function () {
                 dashboard_component_1.DashboardComponent,
                 chart_movement_component_1.ChartMovementsComponent,
                 chart_recap_component_1.ChartRecapComponent,
-                chart_month_recap_component_1.ChartMonthRecapComponent
+                chart_month_recap_component_1.ChartMonthRecapComponent,
+                bank_account_select_component_1.BankAccountSelectComponent
             ],
             bootstrap: [
                 app_component_1.AppComponent
             ],
             providers: [
-                accountingMovement_service_1.AccountingMovementService
+                accountingMovement_service_1.AccountingMovementService,
+                bank_account_service_1.BankAccountService
             ]
         }), 
         __metadata('design:paramtypes', [])
