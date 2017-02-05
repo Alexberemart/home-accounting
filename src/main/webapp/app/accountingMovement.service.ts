@@ -59,7 +59,7 @@ export class AccountingMovementService {
         var groups = {};
         body.forEach(function(element){
             var d = new Date(element.date);
-            var group = d.getMonth();
+            var group = (d.getFullYear() * 100) + d.getMonth() + 1;
             groups[group] = groups[group] || [];
             groups[group].push(element);
         });

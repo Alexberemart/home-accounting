@@ -9,11 +9,14 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public abstract class AccountingMovementFactory {
 
     public Date getDateFromString(String text) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
         return formatter.parse(text);
     }
 

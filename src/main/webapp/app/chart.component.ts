@@ -21,7 +21,7 @@ export abstract class ChartComponent {
                     ticks: {
                         callback: function(label, index, labels) {
                             var date = new Date(label);
-                            return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+                            return date.getUTCDate() + '-' + (date.getUTCMonth() + 1) + '-' + date.getUTCFullYear();
                         }
                     }
                 }

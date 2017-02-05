@@ -16,8 +16,8 @@ public class IngFactory extends AccountingMovementFactory{
     public AccountingMovement getAccountingMovementsFromCSVRecord(CSVRecord record, BankAccount bankAccount) throws ParseException {
         AccountingMovement accountingMovement = new AccountingMovement();
         accountingMovement.setDate(getDateFromString(record.get(headers[0])));
-        accountingMovement.setDescription(record.get(headers[3]));
-        accountingMovement.setAmount(getFloatFromString(record.get(headers[6])));
+        accountingMovement.setDescription(record.get(headers[1]));
+        accountingMovement.setAmount(getFloatFromString(record.get(headers[4])));
         accountingMovement.setBankAccount(bankAccount);
         return accountingMovement;
     }

@@ -9,6 +9,7 @@ import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class AccountingMovementServicesTest {
     BbvaFactory bbvaFactory;
 
     @Test
+    @Ignore
     public void getAccountingMovements() throws IOException, ParseException {
         InputStream is = getClass().getResourceAsStream("/com/alexberemart/homeAccounting/ing.csv");
         List<AccountingMovement> accountingMovements = ingAccountingMovementServices.getAccountingMovements(is, 1L);
